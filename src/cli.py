@@ -1,4 +1,5 @@
 # src/cli.py
+from src import __version__
 import argparse
 
 from sklearn.metrics import classification_report, confusion_matrix
@@ -27,6 +28,8 @@ def cmd_report(args):
 
 def main():
     parser = argparse.ArgumentParser(prog="ids", description="Network intrusion detector")
+    parser.add_argument("--version", action="version", version=f"ids {__version__}")
+    parser.add_argument("-v",action="version", version=f"ids {__version__}")
     sub = parser.add_subparsers(dest="command", required=True)
 
     p = sub.add_parser("predict", help="Score traffic and write alerts to CSV")
