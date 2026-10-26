@@ -16,17 +16,19 @@ COLUMNS = [
 
 CATEGORICAL = ["protocol_type", "service", "flag"]
 
+def load_nsl_kdd(path, has_labels=True):
+    """Load an NSL-KDD style file. Returns X, and y if labels exist, else None."""
+    if has_labels:
+        df = pd.read_csv(path, header=None, names=COLUMNS)
+        df = df.drop(columns=["difficulty"])
+        y = (df["label"] != "normal").astype(int)
+        X = df.drop(columns=["label"])
+    else:
+        # Unlabeled: 41 feature columns only
+        df = pd.read_csv(path, header=None, names=COLUMNS[:41])
+        y = None
+        X = df
 
-def load_nsl_kdd(path):
-    """Load an NSL-KDD file and return features X and binary labels y."""
-    df = pd.read_csv(path, header=None, names=COLUMNS)
-    df = df.drop(columns=["difficulty"])
-
-    # 0 = normal traffic, 1 = any attack
-    y = (df["label"] != "normal").astype(int)
-    X = df.drop(columns=["label"])
-
-    # One-hot encode the text columns; numeric columns pass through
     X = pd.get_dummies(X, columns=CATEGORICAL)
     return X, y
 
