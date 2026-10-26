@@ -1,4 +1,7 @@
 # Changelog
+## [0.6.0]
+- Streamlit dashboard (`app.py`) for uploading traffic, adjusting the alert threshold, and downloading alerts
+
 ## [0.5.0]
 - `predict` accepts unlabeled traffic (41 feature columns, no label)
 - Labels are optional in the loader; unlabeled input produces no evaluation

@@ -1,6 +1,6 @@
 # Network Intrusion Detection System (NIDS) with Machine Learning
 
-**Current version:** 0.4.0 (see [CHANGELOG.md](CHANGELOG.md))
+**Current version:** 0.5.0 (see [CHANGELOG.md](CHANGELOG.md))
 
 A CLI intrusion detector which classifies network connections as normal or attack (based on the NSL-KDD data set). It gives you a probability score for any given connection being an attack and allows you to adjust the threshold for when an alert is generated.
 
@@ -93,6 +93,14 @@ Show metrics on a labeled test file:
 ```bash
 python -m src.cli report
 ```
+
+Launch the dashboard:
+
+```bash
+streamlit run app.py
+```
+
+Upload an unlabeled traffic file (41 columns) and adjust the alert threshold to see how the number of flagged connections changes.
 
 ## Limitations
 
